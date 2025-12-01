@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOWERBIND - An Original Indie RPG</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 40px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 4px solid #ffd700;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            color: #ffd700;
+            text-shadow: 4px 4px 0px #ff6b6b, 8px 8px 0px #4ecdc4;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 4px 4px 0px #ff6b6b, 8px 8px 0px #4ecdc4, 0 0 20px #ffd700; }
+            to { text-shadow: 4px 4px 0px #ff6b6b, 8px 8px 0px #4ecdc4, 0 0 30px #ffd700, 0 0 40px #ffd700; }
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #4ecdc4;
+            margin-bottom: 30px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 0;
+            border-bottom: 2px solid #4ecdc4;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #4ecdc4;
+            background: rgba(78, 205, 196, 0.1);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+        
+        .nav-link:hover {
+            background: #4ecdc4;
+            color: #1a1a2e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(78, 205, 196, 0.3);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px #ff6b6b;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 2;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            color: #1a1a2e;
+            text-decoration: none;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(255, 107, 107, 0.3);
+        }
+        
+        /* Game Description */
+        .game-description {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 60px 40px;
+            margin: 60px 0;
+            border: 4px solid #4ecdc4;
+            border-radius: 0;
+        }
+        
+        .game-description h2 {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 0px #ff6b6b;
+        }
+        
+        .description-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .description-text {
+            font-size: 0.9rem;
+            line-height: 2;
+            color: #ffffff;
+        }
+        
+        .description-text p {
+            margin-bottom: 20px;
+        }
+        
+        .game-features {
+            background: rgba(78, 205, 196, 0.1);
+            padding: 30px;
+            border: 2px solid #4ecdc4;
+        }
+        
+        .game-features h3 {
+            color: #4ecdc4;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .features-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.8rem;
+        }
+        
+        .features-list li:before {
+            content: "❀";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+        
+        /* Screenshots Section */
+        .screenshots-section {
+            background: rgba(78, 205, 196, 0.1);
+            padding: 60px 40px;
+            margin: 60px 0;
+            border: 4px solid #4ecdc4;
+            text-align: center;
+        }
+        
+        .screenshots-section h2 {
+            font-size: 2rem;
+            color: #4ecdc4;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px #ffd700;
+        }
+        
+        .screenshots-content p {
+            font-size: 1rem;
+            margin-bottom: 40px;
+            line-height: 2;
+            color: #ffffff;
+        }
+        
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 769px) {
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                align-items: start;
+            }
+            
+            .screenshot-card:nth-child(1) {
+                grid-column: 1;
+                grid-row: 1;
+                align-self: end;
+            }
+            
+            .screenshot-card:nth-child(2) {
+                grid-column: 2;
+                grid-row: 1;
+                align-self: end;
+            }
+            
+            .screenshot-card:nth-child(3) {
+                grid-column: 1;
+                grid-row: 2;
+                margin-top: 60px;
+                align-self: start;
+            }
+            
+            .screenshot-card:nth-child(4) {
+                grid-column: 2;
+                grid-row: 2;
+                margin-top: 60px;
+                align-self: start;
+            }
+        }
+        
+        .screenshot-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #4ecdc4;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(78, 205, 196, 0.2);
+            border-color: #ffd700;
+        }
+        
+        .screenshot-placeholder {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(15, 52, 96, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .screenshot-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .placeholder-content {
+            text-align: center;
+            color: #ffffff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        
+        .placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .placeholder-content p {
+            font-size: 1rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .placeholder-content span {
+            font-size: 0.7rem;
+            color: #4ecdc4;
+            opacity: 0.8;
+        }
+        
+        .screenshot-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        
+        .screenshot-image.loaded {
+            display: block;
+        }
+        
+        .screenshot-image.loaded + .placeholder-content {
+            display: none;
+        }
+
+        /* Hiring Section */
+        .hiring-section {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 60px 40px;
+            margin: 60px 0;
+            border: 4px solid #ff6b6b;
+            text-align: center;
+        }
+        
+        .hiring-section h2 {
+            font-size: 2rem;
+            color: #ff6b6b;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px #ffd700;
+        }
+        
+        .hiring-content p {
+            font-size: 1rem;
+            margin-bottom: 40px;
+            line-height: 2;
+        }
+        
+        .positions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (min-width: 769px) {
+            .positions {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                align-items: start;
+            }
+            
+            .position-card:nth-child(1) {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            
+            .position-card:nth-child(2) {
+                grid-column: 2;
+                grid-row: 1;
+            }
+            
+            .position-card:nth-child(3) {
+                grid-column: 1;
+                grid-row: 2;
+                margin-top: 60px;
+            }
+            
+            .position-card:nth-child(4) {
+                grid-column: 2;
+                grid-row: 2;
+                margin-top: 60px;
+            }
+        }
+        
+        .position-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border: 2px solid #ff6b6b;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+            height: 100%;
+        }
+        
+        .position-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255, 107, 107, 0.2);
+        }
+        
+        .position-card h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .position-card p {
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #ff6b6b;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .contact-button:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 0;
+            border-top: 4px solid #ffd700;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            font-size: 0.7rem;
+            line-height: 1.8;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: #4ecdc4;
+        }
+        
+
+        
+        .footer-bottom {
+            border-top: 2px solid #4ecdc4;
+            padding-top: 20px;
+            font-size: 0.7rem;
+            color: #4ecdc4;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .nav-link {
+                font-size: 0.7rem;
+                padding: 8px 15px;
+            }
+            
+            .description-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-description, .hiring-section, .screenshots-section {
+                padding: 40px 20px;
+            }
+            
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="top">
+        <div class="container">
+            <img class="logo" src="assets/logo.png">
+            <p class="subtitle">An Original Indie RPG Experience</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="#top" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#screenshots" class="nav-link">Screenshots</a>
+                <a href="#hiring" class="nav-link">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>Welcome to FLOWERBIND</h1>
+                <p>Step into the mysterious Greenhouse as a human teen trapped in a world of Demons and ancient beings. Inspired by classic RPGs, Cave Story, and anime, FLOWERBIND challenges you to navigate complex relationships where your choices matter - but not everything can be changed. Will you fight or befriend? The fate of the Greenhouse awaits your decision.</p>
+
+            </section>
+
+            <section class="game-description" id="about">
+                <h2>About FLOWERBIND</h2>
+                <div class="description-content">
+                    <div class="description-text">
+                        <p>FLOWERBIND is an original indie RPG inspired by classic RPGs, Cave Story, anime, and more. You play as a human teen who finds themselves trapped in a mysterious giant tree called the Greenhouse - a strange land filled with secrets and danger.</p>
+                        
+                        <p>The Greenhouse is inhabited by beings called Demons who harbor deep resentment toward humans. These Demons were sealed away in the Greenhouse by humans for unknown reasons, alongside other mysterious beings that existed before them.</p>
+                        
+                        <p>Interact with the inhabitants of the Greenhouse - fight or befriend them, your choices matter! But remember: you cannot decide everyone's fate. Some stronger foes will stand against you, and certain destinies cannot be changed no matter how hard you try.</p>
+                    </div>
+                    
+                    <div class="game-features">
+                        <h3>Game Features</h3>
+                        <ul class="features-list">
+                            <li>Team system (Party Member mechanics)</li>
+                            <li>Action-based combat with dodge mechanics</li>
+                            <li>Fight or befriend system with consequences</li>
+                            <li>Multiple combat options and strategies</li>
+                            <li>Moral choices that shape your journey</li>
+                            <li>Immutable fate system - some things cannot be changed</li>
+                            <li>Explore the mysterious Greenhouse world</li>
+                            <li>Interact with Demons and ancient beings</li>
+                            <li>Original storyline inspired by multiple sources</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="screenshots-section" id="screenshots">
+                <h2>Screenshots</h2>
+                <div class="screenshots-content">
+                    <p>Get a glimpse into the mysterious world of FLOWERBIND and see the pixel art style that brings the Greenhouse to life!</p>
+                    
+                    <div class="screenshots-grid">
+                        <div class="screenshot-card">
+                            <div class="screenshot-placeholder">
+                                <img class="screenshot-image" src="assets/1.png" onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-card">
+                            <div class="screenshot-placeholder">
+                                <img class="screenshot-image" src="assets/2.png" onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-card">
+                            <div class="screenshot-placeholder">
+                                <img class="screenshot-image" src="assets/3.png" onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-card">
+                            <div class="screenshot-placeholder">
+                                <img class="screenshot-image" src="assets/4.png" onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hiring-section" id="hiring">
+                <h2>Join Our Team!</h2>
+                <div class="hiring-content">
+                    <p>We're looking for passionate developers, artists, and creators to help bring FLOWERBIND to life! If you love indie RPGs and want to contribute to this original project, we'd love to hear from you.</p>
+                    
+                    <div class="positions">
+                        <div class="position-card">
+                            <h3>Pixel Artists</h3>
+                            <p>Create beautiful sprite work, backgrounds, and UI elements. Experience with character animation and pixel art preferred.</p>
+                            <a href="#contact" class="contact-button">Apply Now</a>
+                        </div>
+                        
+                        <div class="position-card">
+                            <h3>Music Composers</h3>
+                            <p>Compose original tracks for our indie RPG. Knowledge of chiptune and orchestral composition welcome.</p>
+                            <a href="#contact" class="contact-button">Apply Now</a>
+                        </div>
+                        
+                        <div class="position-card">
+                            <h3>Game Programmers</h3>
+                            <p>Help implement game mechanics, dialogue systems, and combat. Experience with GameMaker Studio or similar engines preferred.</p>
+                            <a href="#contact" class="contact-button">Apply Now</a>
+                        </div>
+                        
+                        <div class="position-card">
+                            <h3>Writers</h3>
+                            <p>Craft engaging dialogue, character development, and storylines that capture the heart of great indie RPG storytelling.</p>
+                            <a href="#contact" class="contact-button">Apply Now</a>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 80px;">All positions are volunteer-based for this indie project. Join us in creating something amazing for the indie gaming community!</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About FLOWERBIND</h3>
+                    <p>FLOWERBIND is an original indie RPG created by passionate indie game developers. This is an independent project not affiliated with any major game studios.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Credits</h3>
+                    <p>FLOWERBIND Owner: Amoxyr<br>
+                    Special thanks to the indie gaming community<br>
+                    Inspired by classic RPGs and pixel art games</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><a href="mailto:ayc41401@gmail.com">Contact Us</a><br>
+                    FLOWERBIND: discord server<br>
+                    <a href="https://discord.gg/nA2N7PtBBQ">Join our Discord Server</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <p>This is an original indie game project. All assets and content are created by the FLOWERBIND team unless otherwise noted.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 FLOWERBIND Team - Original Indie Game | Made with ❤️ for the Indie Gaming Community</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.position-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#ffd700';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = '#ff6b6b';
+            });
+        });
+
+        // Contact button functionality
+        document.querySelectorAll('.contact-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open('https://docs.google.com/forms/d/1VpvBuBp-Lxsod8VsQgkrk8DKHb1oosumn_5IuvN_F3U/viewform?edit_requested=true', '_blank');
+            });
+        });
+
+        // Screenshot image loading functionality
+        document.querySelectorAll('.screenshot-image').forEach(img => {
+            img.addEventListener('load', function() {
+                if (this.src && this.src !== '') {
+                    this.classList.add('loaded');
+                }
+            });
+            
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                this.classList.remove('loaded');
+            });
+        });
+
+        // Function to update screenshot images (for when you have images to add)
+        function updateScreenshot(index, imageUrl) {
+            const images = document.querySelectorAll('.screenshot-image');
+            if (images[index] && imageUrl) {
+                images[index].src = imageUrl;
+            }
+        }
+
+        // Example usage (uncomment and modify when you have images):
+        // updateScreenshot(0, 'https://your-image-url.com/greenhouse.png');
+        // updateScreenshot(1, 'https://your-image-url.com/combat.png');
+        // updateScreenshot(2, 'https://your-image-url.com/characters.png');
+        // updateScreenshot(3, 'https://your-image-url.com/demons.png');
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9743a177c4ffe160',t:'MTc1NjA0NjY5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
