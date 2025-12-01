@@ -26,7 +26,7 @@ Join the official Discord server to chat, ask questions, and connect with other 
 ## 🤝 Credits
 
 - **Game by:** Amoxyr  
-- **Website by:** JOUNARDIENYOU
+- **Website by:** Me!
 
 ---
 
